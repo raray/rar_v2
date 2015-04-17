@@ -1,0 +1,87 @@
+@mixin box($width, $height, $top, $left) {
+    position: absolute;
+    width: $width;
+    height: $height;
+    top: $top;
+    left: $left;
+}
+
+@mixin link($bg-color, $image-url, $position, $size: contain) {
+	background-color: $bg-color;
+	background-image: url(#{$image-url});
+	background-position: #{$position};
+	background-size: $size;
+}
+
+$boxes: 50% 75% 0 0,
+        50% 50% 0 50%,
+        25% 50% 50% 75%,
+        25% 50% 50% 50%,
+        (50% / 3, 25%, 75%, 50% * 2 / 3),
+        (50% / 3, 25%, 75%, 50% / 3),
+        (50% / 3, 25%, 75%, 0);
+
+
+.splode {
+    @include box(100%, 100%, 0, 0);
+    
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @for $i from 1 through length($boxes) {
+        $box-props: nth($boxes, $i);
+
+        .box:nth-child(#{$i}) {
+            @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
+        }
+    }
+	
+	.box {
+	
+		a {
+			box-sizing: border-box;
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 30px;
+			background-origin: content-box;
+			background-repeat: no-repeat;
+
+			&.kindddred {
+				@include link(#ffffff, "../img/kindddred-logo.svg", "center right");
+			}
+
+			&.kalkomey {
+				@include link(#ef5300, "../img/kalkomey-logo.svg", "center center");
+				
+				padding: 40px;
+			}
+
+			&.linkedin {
+				@include link(#0077b5, "../img/linkedin-logo.svg", "center center");
+			}
+
+			&.cleveland-suite {
+				@include link(#000000, "../img/cleveland.jpg", "center center", cover);
+
+				padding: 0;
+			}
+
+			&.twitter {
+				@include link(#55acee, "../img/twitter-logo.svg", "center center");
+			}
+
+			&.github {
+				@include link(#000000, "../img/github-logo.svg", "center center");
+			}
+
+			&.dribbble {
+				@include link(#ea4c89, "../img/dribbble-logo.svg", "center center");
+			}
+		}
+	}
+}
+
+

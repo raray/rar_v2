@@ -1,0 +1,31 @@
+$brand-yellow: #FFDD00;
+$brand-blue  : #45DAE5;
+$brand-pink  : #CC1481;
+$brand-red   : #B22F00;
+$brand-orange: #EB8404;
+$brand-green : #75BA0F;
+
+@keyframes body-bg-shift {
+	0%   {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
+	16.6%{background-color: desaturate(lighten($brand-orange, 40%), 60%);}
+	33.3%{background-color: desaturate(lighten($brand-red, 40%), 60%);}
+	50%  {background-color: desaturate(lighten($brand-pink, 40%), 60%);}
+	66.6%{background-color: desaturate(lighten($brand-blue, 40%), 60%);}
+	83.3%{background-color: desaturate(lighten($brand-green, 40%), 60%);}
+	100% {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
+}
+
+$font-family: "ff-enzo-web", Arial, sans-serif;
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 10px;
+	font-family: $font-family;
+}
+
+body {
+	animation: body-bg-shift 60s steps(60) infinite normal;
+}

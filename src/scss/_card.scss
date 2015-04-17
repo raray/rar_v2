@@ -1,0 +1,123 @@
+$card-height: 500px;
+
+@keyframes logo-bg-shift {
+	0%   {background-color: $brand-yellow;}
+	16.6%{background-color: $brand-orange;}
+	33.3%{background-color: $brand-red;}
+	50%  {background-color: $brand-pink;}
+	66.6%{background-color: $brand-blue;}
+	83.3%{background-color: $brand-green;}
+	100% {background-color: $brand-yellow;}
+}
+
+@keyframes accent-color-shift {
+	0%   {color: complement($brand-yellow);}
+	16.6%{color: complement($brand-orange);}
+	33.3%{color: complement($brand-red);}
+	50%  {color: complement($brand-pink);}
+	66.6%{color: complement($brand-blue);}
+	83.3%{color: complement($brand-green);}
+	100% {color: complement($brand-yellow);}
+}
+
+.card {
+	position: relative;
+	top: 40%;
+	transform: translateY(-50%);
+	height: 500px;
+	width: $card-height * 1.586;
+	margin: 0 auto 0 auto;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+
+	article {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		border-radius: 5px;
+		background: #444;
+
+		h1 {
+			text-indent: 101%;
+
+			&:before {
+				content: " ";
+				position: absolute;
+				top: -5%;
+				left: 15%;
+				display: block;
+				height: $card-height * 1.1;
+				width: $card-height * 1.1;
+				animation: logo-bg-shift 60s steps(60) infinite normal;
+				background-image: url(../img/ra-logo.svg);
+				background-repeat: no-repeat;
+				background-position: 25% 55%;
+				background-size: 80% 80%;
+				border-radius: $card-height * 1.1 / 2;
+			}
+		}
+
+		&.back {
+			background: lighten(#444, 65%);
+			text-align: center;
+			
+			h1 {
+				margin-top: 150px;
+				font-size: 8rem;
+				line-height: 1.2em;
+				text-indent: 0;
+
+				&:before {
+					transform: rotateY(180deg);
+					opacity: 0.1;
+					z-index: -1;
+				}
+			}
+
+			p {
+				font-size: 2rem;
+				line-height: 1.4em;
+			}
+
+			button {
+				margin-top: 2rem;
+				background: none;
+				border: 0;
+				font-family: $font-family;
+				font-size: 2rem;
+				line-height: 1.4rem;
+				text-decoration: underline;
+				animation: accent-color-shift 60s steps(60) infinite normal;
+			}
+		}
+	}
+}
+
+
+.flip-container {
+	perspective: 2000;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	&.flip {
+		transform: rotateY(180deg) translateY(-50%);
+	}
+}
+
+.front, .back {
+	backface-visibility: hidden;
+}
+
+.front {
+	z-index: 2;
+	
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(180deg);
+}
