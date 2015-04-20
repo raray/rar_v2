@@ -1,4 +1,5 @@
-$card-height: 500px;
+
+$logo-size: $card-height * 1.1;
 
 @keyframes logo-bg-shift {
 	0%   {background-color: $brand-yellow;}
@@ -21,57 +22,82 @@ $card-height: 500px;
 }
 
 .card {
-	position: relative;
-	top: 40%;
-	transform: translateY(-50%);
-	height: 500px;
-	width: $card-height * 1.586;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto 0 auto;
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+
+	@media #{$card-size-query} {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		height: $card-height;
+		width: $card-width;
+	}
 
 	article {
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
-		border-radius: 5px;
+		overflow: hidden;		
 		background: #444;
 
-		h1 {
-			text-indent: 101%;
+		@media #{$card-size-query} {
+			border-radius: 5px;
+		}
 
-			&:before {
-				content: " ";
-				position: absolute;
-				top: -5%;
-				left: 15%;
-				display: block;
-				height: $card-height * 1.1;
-				width: $card-height * 1.1;
-				animation: logo-bg-shift 60s steps(60) infinite normal;
-				background-image: url(../img/ra-logo.svg);
-				background-repeat: no-repeat;
-				background-position: 25% 55%;
-				background-size: 80% 80%;
-				border-radius: $card-height * 1.1 / 2;
+		.logo {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			margin: -55vw 0 0 -5vw;
+			display: block;
+			width: 110vw;
+			height: 110vw;
+			animation: logo-bg-shift 60s steps(60) infinite normal;
+			background-image: url(../img/ra-logo.svg);
+			background-repeat: no-repeat;
+			background-position: 25% 55%;
+			background-size: 80% 80%;
+			border-radius: 50%;
+
+			@media (min-aspect-ratio: 1/1) {
+				width: 110vh;
+				height: 110vh;
+				top: 0;
+				left: 50%;
+				margin: -5vh 0 0 -55vh;
+			}
+
+			@media #{$card-size-query} {
+				top: 0;
+				left: 50%;
+				height: 110%;
+				width: $logo-size;
+				margin: (-$logo-size * 0.05) 0 0 (-$logo-size / 2);
 			}
 		}
 
 		&.back {
 			background: lighten(#444, 65%);
 			text-align: center;
+
+			.logo {
+				transform: rotateY(180deg);
+				opacity: 0.1;
+				z-index: -1;
+			}
+
+			.content {
+				position: relative;
+  				top: 50%;
+  				transform: translateY(-50%);
+			}
 			
 			h1 {
-				margin-top: 150px;
 				font-size: 8rem;
 				line-height: 1.2em;
 				text-indent: 0;
-
-				&:before {
-					transform: rotateY(180deg);
-					opacity: 0.1;
-					z-index: -1;
-				}
 			}
 
 			p {
@@ -103,7 +129,11 @@ $card-height: 500px;
 	transform-style: preserve-3d;
 
 	&.flip {
-		transform: rotateY(180deg) translateY(-50%);
+		transform: rotateY(180deg);
+
+		@media #{$card-size-query} {
+			transform: rotateY(180deg) translateY(-50%);
+		}
 	}
 }
 

@@ -13,13 +13,21 @@
 	background-size: $size;
 }
 
-$boxes: 50% 75% 0 0,
-        50% 50% 0 50%,
-        25% 50% 50% 75%,
-        25% 50% 50% 50%,
-        (50% / 3, 25%, 75%, 50% * 2 / 3),
-        (50% / 3, 25%, 75%, 50% / 3),
-        (50% / 3, 25%, 75%, 0);
+$boxes_landscape: 	50% 75% 0 0,
+        			50% 50% 0 50%,
+			        25% 50% 50% 75%,
+			        25% 50% 50% 50%,
+			        (50% / 3, 25%, 75%, 50% * 2 / 3),
+			        (50% / 3, 25%, 75%, 50% / 3),
+			        (50% / 3, 25%, 75%, 0);
+
+$boxes_portrait: 	50% 50% 0 0,
+        			100% 25% 50% 0,
+			        50% 25% 0 50%,
+			        50% 25% 25% 50%,
+			        (100% / 3, 25%, 75%, 100% * 2 / 3),
+			        (100% / 3, 25%, 75%, 100% / 3),
+			        (100% / 3, 25%, 75%, 0);
 
 
 .splode {
@@ -30,12 +38,26 @@ $boxes: 50% 75% 0 0,
     padding: 0;
     list-style: none;
 
-    @for $i from 1 through length($boxes) {
-        $box-props: nth($boxes, $i);
+    // main layout
+    @for $i from 1 through length($boxes_landscape) {
+        $box-props: nth($boxes_landscape, $i);
 
         .box:nth-child(#{$i}) {
             @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
         }
+    }
+
+    // special layout for vertical card situations
+    @media (max-width: $card-width) {
+    	@media (max-aspect-ratio: 1/1) {
+	    	@for $i from 1 through length($boxes_portrait) {
+		        $box-props: nth($boxes_portrait, $i);
+
+		        .box:nth-child(#{$i}) {
+		            @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
+		        }
+		    }
+		}
     }
 	
 	.box {
@@ -45,9 +67,13 @@ $boxes: 50% 75% 0 0,
 			display: block;
 			width: 100%;
 			height: 100%;
-			padding: 30px;
+			padding: 15px;
 			background-origin: content-box;
 			background-repeat: no-repeat;
+
+			@media #{$card-size-query} {
+				padding: 30px;
+			}
 
 			&.kindddred {
 				@include link(#ffffff, "../img/kindddred-logo.svg", "center right");

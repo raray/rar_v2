@@ -1,3 +1,4 @@
+// variables potentially used in multiple places
 $brand-yellow: #FFDD00;
 $brand-blue  : #45DAE5;
 $brand-pink  : #CC1481;
@@ -16,6 +17,10 @@ $brand-green : #75BA0F;
 }
 
 $font-family: "ff-enzo-web", Arial, sans-serif;
+
+$card-height    : 500px;
+$card-width     : $card-height * 1.586;
+$card-size-query: "(min-width: #{$card-width}) and (min-height: #{$card-height})";
 
 html,
 body {
