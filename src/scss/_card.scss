@@ -29,8 +29,8 @@ $logo-size: $card-height * 1.1;
 
 	@media #{$card-size-query} {
 		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+		top: $card-top;
+		transform: translateY(-$card-top);
 		height: $card-height;
 		width: $card-width;
 	}
@@ -117,37 +117,4 @@ $logo-size: $card-height * 1.1;
 			}
 		}
 	}
-}
-
-
-.flip-container {
-	perspective: 2000;
-}
-
-.flipper {
-	transition: 0.6s;
-	transform-style: preserve-3d;
-
-	&.flip {
-		transform: rotateY(180deg);
-
-		@media #{$card-size-query} {
-			transform: rotateY(180deg) translateY(-50%);
-		}
-	}
-}
-
-.front, .back {
-	backface-visibility: hidden;
-}
-
-.front {
-	z-index: 2;
-	
-	/* for firefox 31 */
-	transform: rotateY(0deg);
-}
-
-.back {
-	transform: rotateY(180deg);
 }

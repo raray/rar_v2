@@ -20,6 +20,7 @@ $font-family: "ff-enzo-web", Arial, sans-serif;
 
 $card-height    : 500px;
 $card-width     : $card-height * 1.586;
+$card-top       : 35%;
 $card-size-query: "(min-width: #{$card-width}) and (min-height: #{$card-height})";
 
 html,
