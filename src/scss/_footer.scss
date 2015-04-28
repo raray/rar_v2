@@ -1,20 +1,20 @@
 
 body > footer {
-	display: none;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.7);
-	text-align: center;
-	font-size: 1.4rem;
-	line-height: 3em;
-	color: #fff;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 3em;
+    color: #fff;
 
-	@media #{$card-size-query} {
-		display: block;
-	}
-	 
-	a {
-		color: inherit;
-	}
+    @media #{$card-size-query} {
+        display: block;
+    }
+     
+    a {
+        color: inherit;
+    }
 }
