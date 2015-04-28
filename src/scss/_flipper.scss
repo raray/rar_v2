@@ -1,0 +1,31 @@
+.flip-container {
+	perspective: 2000;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	&.flip {
+		transform: rotateY(180deg);
+
+		@media #{$card-size-query} {
+			transform: rotateY(180deg) translateY(-$card-top);
+		}
+	}
+}
+
+.front, .back {
+	backface-visibility: hidden;
+}
+
+.front {
+	z-index: 2;
+	
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(180deg);
+}
