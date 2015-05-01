@@ -29,10 +29,15 @@ $logo-size: $card-height * 1.1;
 
 	@media #{$card-size-query} {
 		position: relative;
+		margin-top: 50px;
 		top: $card-top;
 		transform: translateY(-$card-top);
 		height: $card-height;
 		width: $card-width;
+	}
+
+	&:hover {
+		cursor: pointer;
 	}
 
 	article {
