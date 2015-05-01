@@ -1,5 +1,5 @@
 $(document).ready(function() {
   
-    RARay.splode.init();
-    RARay.card.init();
+  RARay.splode.init();
+  RARay.card.init();
 });

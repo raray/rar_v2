@@ -43,6 +43,7 @@ module.exports = function(grunt) {
             'bower_components/greensock/src/uncompressed/TweenMax.js',
             
             // site js 
+            'js/breakpoints.js',
             'js/splode.js',
             'js/card.js',
             'js/init.js'

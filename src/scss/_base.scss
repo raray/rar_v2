@@ -34,4 +34,13 @@ body {
 
 body {
 	animation: body-bg-shift 60s steps(60) infinite normal;
+
+	&:after {
+		display: none;
+		content: "small";
+
+		@media #{$card-size-query} {
+			content: "large";
+		}
+	}
 }

@@ -39,9 +39,27 @@ RARay.card = {
           _self.flip(e);
         }
       });
+
+    // TODO - is there a way around this hack?
+    $(window).on('resize', function() {
+
+      var translationY = 0;
+
+      if (RARay.breakpoints.get() === 'large') {
+        translationY = -175;
+      }
+
+      TweenMax.to(_self.$card, 0, {
+        y: translationY
+      });
+    });
   },
 
   dehint: function() {
+
+    if (RARay.breakpoints.get() !== 'large') {
+      return;
+    }
     
     var _self = RARay.card;
 
@@ -82,6 +100,10 @@ RARay.card = {
 
   hint: function(e) {
     
+    if (RARay.breakpoints.get() !== 'large') {
+      return;
+    }
+
     var _self  = RARay.card,
         eventX = e.pageX - $(e.delegateTarget).offset().left,
         coordX = (eventX - _self.cardMidX) / _self.sliceWidth;
