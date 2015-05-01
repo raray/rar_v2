@@ -21,16 +21,7 @@ $flips: 50% 75% 0 0,
 }
 
 .flipper {
-	// transition: 0.5s;
 	transform-style: preserve-3d;
-
-	// &.flip-from-left {
-	// 	@include flip(-180deg);
-	// }
-
-	// &.flip-from-right {
-	// 	@include flip(180deg);
-	// }
 }
 
 .front, .back {
