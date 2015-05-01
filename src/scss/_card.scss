@@ -35,6 +35,10 @@ $logo-size: $card-height * 1.1;
 		width: $card-width;
 	}
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	article {
 		position: absolute;
 		width: 100%;

@@ -36,12 +36,17 @@ module.exports = function(grunt) {
           '../dist/js/preload.min.js' : [
             'js/typekit.js'
           ],
-          '../dist/js/libs.min.js': [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/greensock/src/uncompressed/TweenMax.js'
-          ],
           '../dist/js/raray.min.js': [
-            'js/splode.js'
+
+            // libs
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/greensock/src/uncompressed/TweenMax.js',
+            
+            // site js 
+            'js/breakpoints.js',
+            'js/splode.js',
+            'js/card.js',
+            'js/init.js'
           ]
         }
       }

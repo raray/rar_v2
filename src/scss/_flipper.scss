@@ -1,3 +1,19 @@
+@mixin flip($rotateY) {
+	transform: rotateY($rotateY);
+
+	@media #{$card-size-query} {
+		transform: rotateY($rotateY) translateY(-$card-top);
+	}
+}
+
+$flips: 50% 75% 0 0,
+		50% 50% 0 50%,
+        25% 50% 50% 75%,
+        25% 50% 50% 50%,
+        (50% / 2.99, 25%, 75%, 50% * 2 / 3),
+        (50% / 2.99, 25%, 75%, 50% / 3),
+        (50% / 2.99, 25%, 75%, 0);
+
 .flip-container {
 	width: 100%;
 	height: 100%;
@@ -5,16 +21,7 @@
 }
 
 .flipper {
-	transition: 0.6s;
 	transform-style: preserve-3d;
-
-	&.flip {
-		transform: rotateY(180deg);
-
-		@media #{$card-size-query} {
-			transform: rotateY(180deg) translateY(-$card-top);
-		}
-	}
 }
 
 .front, .back {
