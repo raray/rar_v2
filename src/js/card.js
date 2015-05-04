@@ -68,15 +68,6 @@ RARay.card = {
     });
   },
 
-  unbind: function() {
-
-    var _self = RARay.card;
-
-    _self.$card.off('.card');
-
-    _self.dehint();
-  },
-
   flip: function(e) {
 
     var _self     = RARay.card,
@@ -94,7 +85,9 @@ RARay.card = {
     _self.curRotationY += rotationY;
 
     TweenMax.to(_self.$card, 0.6, {
-      rotationY: _self.curRotationY - 1
+
+      // the -0.01 is a silly hack to make sure the rotation happens in the correct direction
+      rotationY: _self.curRotationY - 0.01
     });
   },
 
@@ -120,5 +113,14 @@ RARay.card = {
     _self.cardWidth  = _self.$card.width();
     _self.cardMidX   = _self.cardWidth / 2;
     _self.sliceWidth = _self.cardWidth / 20;
-  }
+  },
+
+  unbind: function() {
+
+    var _self = RARay.card;
+
+    _self.$card.off('.card');
+
+    _self.dehint();
+  },
 };
