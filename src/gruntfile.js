@@ -46,7 +46,8 @@ module.exports = function(grunt) {
             'js/breakpoints.js',
             'js/splode.js',
             'js/card.js',
-            'js/init.js'
+            'js/init.js',
+            'js/ga.js'
           ]
         }
       }
