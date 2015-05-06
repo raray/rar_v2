@@ -109,7 +109,7 @@ $logo-size: $card-height * 1.1;
 				line-height: 1.4em;
 			}
 
-			button {
+			.splode-show {
 				margin-top: 2rem;
 				background: none;
 				border: 0;
@@ -117,8 +117,8 @@ $logo-size: $card-height * 1.1;
 				font-size: 2rem;
 				line-height: 1.4rem;
 				text-decoration: underline;
-				animation: accent-color-shift 60s steps(60) infinite normal;
-			}
+				animation: accent-color-shift 60s steps(60) infinite normal;	
+		    }
 		}
 	}
 }
