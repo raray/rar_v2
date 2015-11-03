@@ -113,6 +113,10 @@ $boxes_portrait: 	50% 50% 0 0,
 				@include link(#0077b5, "../img/linkedin-logo.svg", "center center");
 			}
 
+			&.lifeblue {
+				@include link(#00a4d8, "../img/lifeblue-logo.svg", "center center");
+			}
+
 			&.cleveland-suite {
 				@include link(#000000, "../img/cleveland.jpg", "center center", cover);
 
