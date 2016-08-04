@@ -1,160 +1,159 @@
 @mixin box($width, $height, $top, $left) {
-    position: absolute;
-    width: $width;
-    height: $height;
-    top: $top;
-    left: $left;
+  position: absolute;
+  width: $width;
+  height: $height;
+  top: $top;
+  left: $left;
 }
 
 @mixin link($bg-color, $image-url, $position, $size: contain) {
-	background-color: $bg-color;
-	background-image: url(#{$image-url});
-	background-position: #{$position};
-	background-size: $size;
+  background-color: $bg-color;
+  background-image: url(#{$image-url});
+  background-position: #{$position};
+  background-size: $size;
 }
 
-$boxes_landscape: 	50% 75% 0 0,
-        			50% 50% 0 50%,
-			        25% 50% 50% 75%,
-			        25% 50% 50% 50%,
-			        (50% / 2.99, 25%, 75%, 50% * 2 / 3),
-			        (50% / 2.99, 25%, 75%, 50% / 3),
-			        (50% / 2.99, 25%, 75%, 0);
+$boxes_landscape: 50% 75% 0 0,
+                  50% 50% 0 50%,
+                  25% 50% 50% 75%,
+                  25% 50% 50% 50%,
+                  (50% / 2.99, 25%, 75%, 50% * 2 / 3),
+                  (50% / 2.99, 25%, 75%, 50% / 3),
+                  (50% / 2.99, 25%, 75%, 0);
 
-$boxes_portrait: 	50% 50% 0 0,
-        			100% 25% 50% 0,
-			        50% 25% 0 50%,
-			        50% 25% 25% 50%,
-			        (100% / 2.99, 25%, 75%, 100% * 2 / 3),
-			        (100% / 2.99, 25%, 75%, 100% / 3),
-			        (100% / 2.99, 25%, 75%, 0);
+$boxes_portrait:  50% 50% 0 0,
+                  100% 25% 50% 0,
+                  50% 25% 0 50%,
+                  50% 25% 25% 50%,
+                  (100% / 2.99, 25%, 75%, 100% * 2 / 3),
+                  (100% / 2.99, 25%, 75%, 100% / 3),
+                  (100% / 2.99, 25%, 75%, 0);
 
 
 .splode {
-    @include box(100%, 100%, 0, 0);
-    
-    display: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  @include box(100%, 100%, 0, 0);
 
-    // main layout
-    @for $i from 1 through length($boxes_landscape) {
-        $box-props: nth($boxes_landscape, $i);
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  // main layout
+  @for $i from 1 through length($boxes_landscape) {
+    $box-props: nth($boxes_landscape, $i);
+
+    .box:nth-child(#{$i}) {
+      @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
+    }
+  }
+
+  // special layout for vertical card situations
+  @media (max-width: $card-width) {
+    @media (max-aspect-ratio: 1/1) {
+      @for $i from 1 through length($boxes_portrait) {
+        $box-props: nth($boxes_portrait, $i);
 
         .box:nth-child(#{$i}) {
-            @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
+          @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
         }
+      }
     }
+  }
 
-    // special layout for vertical card situations
-    @media (max-width: $card-width) {
-    	@media (max-aspect-ratio: 1/1) {
-	    	@for $i from 1 through length($boxes_portrait) {
-		        $box-props: nth($boxes_portrait, $i);
+  .splode-hide {
+    @include box(50px, 50px, 0, 0);
 
-		        .box:nth-child(#{$i}) {
-		            @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
-		        }
-		    }
-		}
+    button {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background-color: #000;
+      color: #fff;
+      font-size: 2rem;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
     }
+  }
 
-    .splode-hide {
-    	@include box(50px, 50px, 0, 0);
-    	
-		button {
-			width: 100%;
-			height: 100%;
-			border: 0;
-			background-color: #000;
-    		color: #fff;
-    		font-size: 2rem;
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+  .box {
+    a {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      background-origin: content-box;
+      background-repeat: no-repeat;
+
+      @media #{$card-size-query} {
+        padding: 30px;
+      }
+
+      &:hover,
+      &:focus {
+
+        .description {
+          opacity: 1;
+        }
+      }
+
+      &.kindddred {
+        @include link(#ffffff, "../img/kindddred-logo.svg", "center right");
+      }
+
+      &.kalkomey {
+        @include link(#ef5300, "../img/kalkomey-logo.svg", "center center");
+
+        padding: 40px;
+      }
+
+      &.linkedin {
+        @include link(#0077b5, "../img/linkedin-logo.svg", "center center");
+      }
+
+      &.lifeblue {
+        @include link(#00a4d8, "../img/lifeblue-logo.svg", "center center");
+      }
+
+      &.cleveland-suite {
+        @include link(#000000, "../img/cleveland.jpg", "center center", cover);
+
+        padding: 0;
+      }
+
+      &.twitter {
+        @include link(#55acee, "../img/twitter-logo.svg", "center center");
+      }
+
+      &.github {
+        @include link(#000000, "../img/github-logo.svg", "center center");
+      }
+
+      &.dribbble {
+        @include link(#ea4c89, "../img/dribbble-logo.svg", "center center");
+      }
+
+      .description {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        opacity: 0;
+        transition: 0.3s;
+
+        p {
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
     }
-	
-	.box {
-	
-		a {
-			box-sizing: border-box;
-			display: block;
-			width: 100%;
-			height: 100%;
-			padding: 15px;
-			background-origin: content-box;
-			background-repeat: no-repeat;
-
-			@media #{$card-size-query} {
-				padding: 30px;
-			}
-
-			&:hover,
-			&:focus {
-
-				.description {
-					opacity: 1;
-				}
-			}
-
-			&.kindddred {
-				@include link(#ffffff, "../img/kindddred-logo.svg", "center right");
-			}
-
-			&.kalkomey {
-				@include link(#ef5300, "../img/kalkomey-logo.svg", "center center");
-				
-				padding: 40px;
-			}
-
-			&.linkedin {
-				@include link(#0077b5, "../img/linkedin-logo.svg", "center center");
-			}
-
-			&.lifeblue {
-				@include link(#00a4d8, "../img/lifeblue-logo.svg", "center center");
-			}
-
-			&.cleveland-suite {
-				@include link(#000000, "../img/cleveland.jpg", "center center", cover);
-
-				padding: 0;
-			}
-
-			&.twitter {
-				@include link(#55acee, "../img/twitter-logo.svg", "center center");
-			}
-
-			&.github {
-				@include link(#000000, "../img/github-logo.svg", "center center");
-			}
-
-			&.dribbble {
-				@include link(#ea4c89, "../img/dribbble-logo.svg", "center center");
-			}
-
-			.description {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				padding: 15px;
-				background: rgba(0, 0, 0, 0.7);
-				color: #fff;
-				opacity: 0;
-				transition: 0.3s;
-
-				p {
-					position: relative;
-					top: 50%;
-					transform: translateY(-50%);
-				}
-			}
-		}
-	}
+  }
 }
 
 

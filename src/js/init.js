@@ -1,5 +1,7 @@
-$(document).ready(function() {
-  
-  RARay.card.init();
-  RARay.splode.init();
-});
+/* global $ */
+/* global RARay */
+
+$(document).ready(function () {
+  RARay.Card.init()
+  RARay.Splode.init()
+})

@@ -1,15 +1,14 @@
+var RARay = RARay || {}
 
-var RARay = RARay || {};
-
-RARay.breakpoints = {
+;(function (RARay) {
+  var Self = RARay.Breakpoints = {}
 
   // from http://tech.particulate.me/javascript/2013/10/10/how-to-conveniently-check-for-responsive-breakpoints-in-javascript/
-  get: function() {
+  Self.get = function () {
+    var tag = window.getComputedStyle(document.body, ':after')
+    tag = tag.getPropertyValue('content')
+    tag = tag.replace(/"/g, '') // Firefox bugfix
 
-    var tag = window.getComputedStyle(document.body,':after');
-        tag = tag.getPropertyValue('content');
-        tag = tag.replace( /"/g,'');   // Firefox bugfix
-
-    return tag;
+    return tag
   }
-};
+}(RARay))
