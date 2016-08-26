@@ -35,7 +35,7 @@ var RARay = RARay || {}
       .children('a')
       .each(function () {
         var bgImage = $(this).css('background-image')
-        bgImage = bgImage.substring(4, bgImage.length - 1)
+        bgImage = bgImage.substring(5, bgImage.length - 2)
 
         $.get(bgImage)
       })
