@@ -7,13 +7,13 @@ $brand-orange: #EB8404;
 $brand-green : #75BA0F;
 
 @keyframes body-bg-shift {
-	0%   {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
-	16.6%{background-color: desaturate(lighten($brand-orange, 40%), 60%);}
-	33.3%{background-color: desaturate(lighten($brand-red, 40%), 60%);}
-	50%  {background-color: desaturate(lighten($brand-pink, 40%), 60%);}
-	66.6%{background-color: desaturate(lighten($brand-blue, 40%), 60%);}
-	83.3%{background-color: desaturate(lighten($brand-green, 40%), 60%);}
-	100% {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
+  0%   {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
+  16.6%{background-color: desaturate(lighten($brand-orange, 40%), 60%);}
+  33.3%{background-color: desaturate(lighten($brand-red, 40%), 60%);}
+  50%  {background-color: desaturate(lighten($brand-pink, 40%), 60%);}
+  66.6%{background-color: desaturate(lighten($brand-blue, 40%), 60%);}
+  83.3%{background-color: desaturate(lighten($brand-green, 40%), 60%);}
+  100% {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
 }
 
 $font-family: "ff-enzo-web", Arial, sans-serif;
@@ -25,22 +25,22 @@ $card-size-query: "(min-width: #{$card-width}) and (min-height: #{$card-height})
 
 html,
 body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	font-size: 10px;
-	font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 10px;
+  font-family: $font-family;
 }
 
 body {
-	animation: body-bg-shift 60s steps(60) infinite normal;
+  animation: body-bg-shift 60s steps(60) infinite normal;
 
-	&:after {
-		display: none;
-		content: "small";
+  &:after {
+    display: none;
+    content: "small";
 
-		@media #{$card-size-query} {
-			content: "large";
-		}
-	}
+    @media #{$card-size-query} {
+      content: "large";
+    }
+  }
 }

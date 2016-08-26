@@ -1,6 +1,7 @@
 
-module.exports = function(grunt) {
+'use strict';
 
+module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -16,14 +17,32 @@ module.exports = function(grunt) {
       }
     },
 
-    autoprefixer: {
-      options: {
-        browsers: ['last 2 versions'],
-        cascade: false
+    postcss: {
+      main: {
+        options: {
+          map: true,
+          processors: [
+            require('autoprefixer')({
+              browsers: ['last 2 versions']
+            }),
+            require('cssnano')()
+          ]
+        },
+        src: '../dist/css/raray.min.css'
+      }
+    },
+
+    standard: {
+      options:{
+        format: true
       },
-      files: {
-        src: '../dist/css/raray.min.css',
-        dest: '../dist/css/raray.min.css'
+      app: {
+        src: [
+          'js/breakpoints.js',
+          'js/card.js',
+          'js/init.js',
+          'js/splode.js'
+        ]
       }
     },
 
@@ -41,8 +60,8 @@ module.exports = function(grunt) {
             // libs
             'bower_components/jquery/dist/jquery.js',
             'bower_components/greensock/src/uncompressed/TweenMax.js',
-            
-            // site js 
+
+            // site js
             'js/breakpoints.js',
             'js/splode.js',
             'js/card.js',
@@ -55,7 +74,7 @@ module.exports = function(grunt) {
 
     watch: {
       options: {
-          livereload: true
+        livereload: true
       },
       styles: {
         files: [
@@ -64,7 +83,7 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'sass',
-          'autoprefixer'
+          'postcss'
         ]
       },
       scripts: {
@@ -81,5 +100,5 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['sass', 'postcss', 'standard', 'uglify']);
 };

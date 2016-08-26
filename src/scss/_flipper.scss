@@ -1,26 +1,26 @@
 
 // basic technique from http://davidwalsh.name/demo/css-flip.php
 .flip-container {
-	width: 100%;
-	height: 100%;
-	perspective: 2000;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
 }
 
 .flipper {
-	transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .front, .back {
-	backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .front {
-	z-index: 2;
-	
-	/* for firefox 31 */
-	transform: rotateY(0deg);
+  z-index: 2;
+
+  /* for firefox 31 */
+  transform: rotateY(0deg);
 }
 
 .back {
-	transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }

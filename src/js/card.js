@@ -1,126 +1,105 @@
-var RARay = RARay || {};
+/* global jQuery */
+/* global TweenMax */
 
-RARay.card = {
+var RARay = RARay || {}
 
-  init: function() {
+;(function ($, TweenMax, RARay) {
+  var Self = RARay.Card = {}
 
-    var _self = RARay.card;
-    
-    _self.$card        = $('.card');
-    _self.curRotationY = 0;
+  Self.init = function () {
+    Self.$card = $('.card')
+    Self.curRotationY = 0
 
-    _self.setCardSizes();
-    _self.bind();
-  },
+    Self.setCardSizes()
+    Self.bind()
+  }
 
-  bind: function() {
-
-    var _self = RARay.card;
-
-    _self.$card
-      .on('mousemove.card', function(e) {
-
-        if ( ! $(e.target).is('button, a')) {
-          _self.hint(e);
-        }
-        else {
-          _self.dehint();
+  Self.bind = function () {
+    Self.$card
+      .on('mousemove.card', function (e) {
+        if (!$(e.target).is('button, a')) {
+          Self.hint(e)
+        } else {
+          Self.dehint()
         }
       })
-      .on('mouseout.card', function(e) {
-        
-        _self.dehint();
+      .on('mouseout.card', function (e) {
+        Self.dehint()
       })
-      .on('click.card', function(e) {
-      
-        if ( ! $(e.target).is('a, button')) {
-          _self.flip(e);
+      .on('click.card', function (e) {
+        if (!$(e.target).is('a, button')) {
+          Self.flip(e)
         }
-      });
+      })
 
     // TODO - is there a way around this hack?
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
+      var translationY = 0
 
-      var translationY = 0;
-
-      if (RARay.breakpoints.get() === 'large') {
-        translationY = -175;
+      if (RARay.Breakpoints.get() === 'large') {
+        translationY = -175
       }
 
-      TweenMax.to(_self.$card, 0, {
+      TweenMax.to(Self.$card, 0, {
         y: translationY
-      });
+      })
 
-      _self.setCardSizes();
-    });
-  },
+      Self.setCardSizes()
+    })
+  }
 
-  dehint: function() {
-
-    if (RARay.breakpoints.get() !== 'large') {
-      return;
+  Self.dehint = function () {
+    if (RARay.Breakpoints.get() !== 'large') {
+      return
     }
-    
-    var _self = RARay.card;
 
-    TweenMax.to(_self.$card, 0.6, {
-      rotationY: _self.curRotationY
-    });
-  },
+    TweenMax.to(Self.$card, 0.6, {
+      rotationY: Self.curRotationY
+    })
+  }
 
-  flip: function(e) {
-
-    var _self     = RARay.card,
-        coordX    = Math.round((e.offsetX - _self.cardMidX) / _self.sliceWidth),        
-        rotationY = 0;
+  Self.flip = function (e) {
+    var coordX = Math.round((e.offsetX - Self.cardMidX) / Self.sliceWidth)
+    var rotationY = 0
 
     // flip left or right - around the Y axis
     if (coordX >= 0) {
-      rotationY = 180;
+      rotationY = 180
+    } else {
+      rotationY = -180
     }
-    else {
-      rotationY = -180;
-    }
-    
-    _self.curRotationY += rotationY;
 
-    TweenMax.to(_self.$card, 0.6, {
+    Self.curRotationY += rotationY
+
+    TweenMax.to(Self.$card, 0.6, {
 
       // the -0.01 is a silly hack to make sure the rotation happens in the correct direction
-      rotationY: _self.curRotationY - 0.01
-    });
-  },
+      rotationY: Self.curRotationY - 0.01
+    })
+  }
 
-  hint: function(e) {
-    
-    if (RARay.breakpoints.get() !== 'large') {
-      return;
+  Self.hint = function (e) {
+    if (RARay.Breakpoints.get() !== 'large') {
+      return
     }
 
-    var _self  = RARay.card,
-        eventX = e.pageX - $(e.delegateTarget).offset().left,
-        coordX = (eventX - _self.cardMidX) / _self.sliceWidth;
+    var eventX = e.pageX - $(e.delegateTarget).offset().left
+    var coordX = (eventX - Self.cardMidX) / Self.sliceWidth
 
-    TweenMax.to(_self.$card, 0.6, {
-      rotationY: coordX + _self.curRotationY
-    });
-  },
+    TweenMax.to(Self.$card, 0.6, {
+      rotationY: coordX + Self.curRotationY
+    })
+  }
 
-  setCardSizes: function() {
+  Self.setCardSizes = function () {
+    Self.cardWidth = Self.$card.width()
+    Self.cardMidX = Self.cardWidth / 2
+    Self.sliceWidth = Self.cardWidth / 20
+  }
 
-    var _self = RARay.card;
+  Self.unbind = function () {
+    Self.$card.off('.card')
 
-    _self.cardWidth  = _self.$card.width();
-    _self.cardMidX   = _self.cardWidth / 2;
-    _self.sliceWidth = _self.cardWidth / 20;
-  },
-
-  unbind: function() {
-
-    var _self = RARay.card;
-
-    _self.$card.off('.card');
-
-    _self.dehint();
-  },
-};
+    Self.dehint()
+  }
+}(jQuery, TweenMax, RARay))

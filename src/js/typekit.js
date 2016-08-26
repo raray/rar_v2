@@ -1,5 +1,5 @@
 
-(function(d) {
+;(function(d) {
 
   var config = {
     kitId        : 'gwk6hib',

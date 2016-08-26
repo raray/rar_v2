@@ -1,111 +1,95 @@
-var RARay = RARay || {};
+/* global jQuery */
+/* global TweenMax */
+/* global Back */
 
-// TODO - rework this to be generic with passable options
-RARay.splode = {
-    
-  init: function() {
+var RARay = RARay || {}
 
-    var _self = RARay.splode;
+;(function ($, TweenMax, RARay) {
+  var Self = RARay.Splode = {}
 
-    _self.$container  = $('.card');
-    _self.$wrapper    = $('.splode');
-    _self.$boxes      = _self.$wrapper.find('.box');
-    _self.clickLeft   = 0;
-    _self.clickRight  = 0;
+  // TODO - rework this to be generic with passable options
+  Self.init = function () {
+    Self.$container = $('.card')
+    Self.$wrapper = $('.splode')
+    Self.$boxes = Self.$wrapper.find('.box')
+    Self.clickLeft = 0
+    Self.clickRight = 0
 
-    _self.bgPreload();
-    _self.bind();
-  },
+    Self.bgPreload()
+    Self.bind()
+  }
 
-  bind: function() {
-
-    var _self = RARay.splode;
-
-    _self.$container
-      .on('click.show', '.splode-show', function(e) {
-
-        _self.show(e);
+  Self.bind = function () {
+    Self.$container
+      .on('click.show', '.splode-show', function (e) {
+        Self.show(e)
       })
-      .on('click.hide', '.splode-hide', function(e) {
+      .on('click.hide', '.splode-hide', function (e) {
+        Self.hide(e)
+      })
+  }
 
-        _self.hide(e); 
-    });
-  },
-
-  bgPreload: function() {
-
-    var _self = RARay.splode;
-
+  Self.bgPreload = function () {
     // pre-load background images
-    _self.$boxes
+    Self.$boxes
       .children('a')
-        .each(function() {
-      
-          bgImage = $(this).css('background-image');
-          bgImage = bgImage.substring(4, bgImage.length -1);
+      .each(function () {
+        var bgImage = $(this).css('background-image')
+        bgImage = bgImage.substring(5, bgImage.length - 2)
 
-          $.get(bgImage);
-        });
-  },
+        $.get(bgImage)
+      })
+  }
 
-  hide: function(e) {
-
-    var _self = RARay.splode;
-
-    _self.$boxes
-      .each(function(i, box) {
-        
+  Self.hide = function (e) {
+    Self.$boxes
+      .each(function (i, box) {
         TweenMax.to(box, 0.75, {
-          alpha     : 0,
-          left      : _self.clickLeft, 
-          top       : _self.clickRight, 
-          width     : 0, 
-          height    : 0,
-          delay     : i * 0.05, 
-          onComplete: function() {
-        
-            if (_self.$boxes.length === i + 1) {
-              _self.$wrapper.hide();
-              
-              _self.$boxes.removeAttr('style');
-              
-              RARay.card.bind();
+          alpha: 0,
+          left: Self.clickLeft,
+          top: Self.clickRight,
+          width: 0,
+          height: 0,
+          delay: i * 0.05,
+          onComplete: function () {
+            if (Self.$boxes.length === i + 1) {
+              Self.$wrapper.hide()
+
+              Self.$boxes.removeAttr('style')
+
+              RARay.Card.bind()
             }
           }
-        });
-      });
-  },
+        })
+      })
+  }
 
-  show: function(e) {
+  Self.show = function (e) {
+    var clickLeft = e.pageX - Self.$container.offset().left + 'px'
+    var clickRight = e.pageY - Self.$container.offset().top + 'px'
 
-    var _self      = RARay.splode,
-        clickLeft  = e.pageX - _self.$container.offset().left + 'px',
-        clickRight = e.pageY - _self.$container.offset().top + 'px';
+    RARay.Card.unbind()
 
-    RARay.card.unbind();
+    Self.$wrapper.show()
 
-    _self.$wrapper.show();
-
-    _self.$boxes
-      .each(function(i, box) {
-        
+    Self.$boxes
+      .each(function (i, box) {
         TweenMax.from(box, 0.15, {
-          alpha: 0, 
+          alpha: 0,
           delay: i * 0.05
-        });
+        })
 
         TweenMax.from(box, 0.75, {
-          left      : clickLeft, 
-          top       : clickRight, 
-          width     : 0, 
-          height    : 0, 
-          delay     : i * 0.05,
-          ease      : Back.easeOut, 
-          onComplete: function() {
-              
-            $(box).removeAttr('style');
+          left: clickLeft,
+          top: clickRight,
+          width: 0,
+          height: 0,
+          delay: i * 0.05,
+          ease: Back.easeOut,
+          onComplete: function () {
+            $(box).removeAttr('style')
           }
-        });
-      });
+        })
+      })
   }
-};
+}(jQuery, TweenMax, RARay))
