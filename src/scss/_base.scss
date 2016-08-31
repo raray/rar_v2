@@ -1,33 +1,46 @@
-// variables potentially used in multiple places
-$brand-yellow: #FFDD00;
-$brand-blue  : #45DAE5;
-$brand-pink  : #CC1481;
-$brand-red   : #B22F00;
-$brand-orange: #EB8404;
-$brand-green : #75BA0F;
+// colors
+$color-white     : #ffffff;
+$color-black     : #000000;
+$color-dark-grey : #444444;
+
+$color-brand-yellow: #FFDD00;
+$color-brand-blue  : #45DAE5;
+$color-brand-pink  : #CC1481;
+$color-brand-red   : #B22F00;
+$color-brand-orange: #EB8404;
+$color-brand-green : #75BA0F;
+
+$color-cleveland-suite : $color-black;
+$color-dribbble        : #ea4c89;
+$color-github          : $color-black;
+$color-kalkomey        : #ef5300;
+$color-kindddred       : $color-white;
+$color-lifeblue        : #00a4d8;
+$color-linkedin        : #0077b5;
+$color-twitter         : #55acee;
 
 @keyframes body-bg-shift {
-  0%   {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
-  16.6%{background-color: desaturate(lighten($brand-orange, 40%), 60%);}
-  33.3%{background-color: desaturate(lighten($brand-red, 40%), 60%);}
-  50%  {background-color: desaturate(lighten($brand-pink, 40%), 60%);}
-  66.6%{background-color: desaturate(lighten($brand-blue, 40%), 60%);}
-  83.3%{background-color: desaturate(lighten($brand-green, 40%), 60%);}
-  100% {background-color: desaturate(lighten($brand-yellow, 40%), 60%);}
+  0%   {background-color: desaturate(lighten($color-brand-yellow, 40%), 60%);}
+  16.6%{background-color: desaturate(lighten($color-brand-orange, 40%), 60%);}
+  33.3%{background-color: desaturate(lighten($color-brand-red, 40%), 60%);}
+  50%  {background-color: desaturate(lighten($color-brand-pink, 40%), 60%);}
+  66.6%{background-color: desaturate(lighten($color-brand-blue, 40%), 60%);}
+  83.3%{background-color: desaturate(lighten($color-brand-green, 40%), 60%);}
+  100% {background-color: desaturate(lighten($color-brand-yellow, 40%), 60%);}
 }
 
-$font-family: "ff-enzo-web", Arial, sans-serif;
+$font-family: 'ff-enzo-web', Arial, sans-serif;
 
-$card-height    : 500px;
-$card-width     : $card-height * 1.586;
-$card-top       : 35%;
-$card-size-query: "(min-width: #{$card-width}) and (min-height: #{$card-height})";
+$card-height     : 500px;
+$card-width      : $card-height * 1.586;
+$card-top        : 35%;
+$card-size-query : '(min-width: #{$card-width}) and (min-height: #{$card-height})';
 
 html,
 body {
   margin: 0;
-  padding: 0;
   height: 100%;
+  padding: 0;
   font-size: 10px;
   font-family: $font-family;
 }
@@ -36,11 +49,11 @@ body {
   animation: body-bg-shift 60s steps(60) infinite normal;
 
   &:after {
+    content: 'small';
     display: none;
-    content: "small";
 
     @media #{$card-size-query} {
-      content: "large";
+      content: 'large';
     }
   }
 }

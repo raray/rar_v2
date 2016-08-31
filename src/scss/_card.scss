@@ -2,30 +2,30 @@
 $logo-size: $card-height * 1.1;
 
 @keyframes logo-bg-shift {
-  0%   {background-color: $brand-yellow;}
-  16.6%{background-color: $brand-orange;}
-  33.3%{background-color: $brand-red;}
-  50%  {background-color: $brand-pink;}
-  66.6%{background-color: $brand-blue;}
-  83.3%{background-color: $brand-green;}
-  100% {background-color: $brand-yellow;}
+  0%   {background-color: $color-brand-yellow;}
+  16.6%{background-color: $color-brand-orange;}
+  33.3%{background-color: $color-brand-red;}
+  50%  {background-color: $color-brand-pink;}
+  66.6%{background-color: $color-brand-blue;}
+  83.3%{background-color: $color-brand-green;}
+  100% {background-color: $color-brand-yellow;}
 }
 
 @keyframes accent-color-shift {
-  0%   {color: complement($brand-yellow);}
-  16.6%{color: complement($brand-orange);}
-  33.3%{color: complement($brand-red);}
-  50%  {color: complement($brand-pink);}
-  66.6%{color: complement($brand-blue);}
-  83.3%{color: complement($brand-green);}
-  100% {color: complement($brand-yellow);}
+  0%   {color: complement($color-brand-yellow);}
+  16.6%{color: complement($color-brand-orange);}
+  33.3%{color: complement($color-brand-red);}
+  50%  {color: complement($color-brand-pink);}
+  66.6%{color: complement($color-brand-blue);}
+  83.3%{color: complement($color-brand-green);}
+  100% {color: complement($color-brand-yellow);}
 }
 
 .card {
+  margin: 0 auto 0 auto;
   width: 100%;
   height: 100%;
-  margin: 0 auto 0 auto;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px fade-out($color-black, 0.6);
 
   @media #{$card-size-query} {
     position: relative;
@@ -38,87 +38,87 @@ $logo-size: $card-height * 1.1;
   &:hover {
     cursor: pointer;
   }
+}
 
-  article {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #444;
+.card__side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: $color-dark-grey;
 
-    @media #{$card-size-query} {
-      border-radius: 5px;
-    }
-
-    .logo {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      margin: -55vw 0 0 -5vw;
-      display: block;
-      width: 110vw;
-      height: 110vw;
-      animation: logo-bg-shift 60s steps(60) infinite normal;
-      background-image: url(../img/ra-logo.svg);
-      background-repeat: no-repeat;
-      background-position: 25% 55%;
-      background-size: 80% 80%;
-      border-radius: 50%;
-
-      @media (min-aspect-ratio: 1/1) {
-        width: 110vh;
-        height: 110vh;
-        top: 0;
-        left: 50%;
-        margin: -5vh 0 0 -55vh;
-      }
-
-      @media #{$card-size-query} {
-        top: 0;
-        left: 50%;
-        height: 110%;
-        width: $logo-size;
-        margin: (-$logo-size * 0.05) 0 0 (-$logo-size / 2);
-      }
-    }
-
-    &.back {
-      background: lighten(#444, 65%);
-      text-align: center;
-
-      .logo {
-        transform: rotateY(180deg);
-        opacity: 0.1;
-        z-index: -1;
-      }
-
-      .content {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      h1 {
-        font-size: 8rem;
-        line-height: 1.2em;
-        text-indent: 0;
-      }
-
-      p {
-        font-size: 2rem;
-        line-height: 1.4em;
-      }
-
-      .splode-show {
-        margin-top: 2rem;
-        background: none;
-        border: 0;
-        font-family: $font-family;
-        font-size: 2rem;
-        line-height: 1.4rem;
-        text-decoration: underline;
-        animation: accent-color-shift 60s steps(60) infinite normal;
-      }
-    }
+  @media #{$card-size-query} {
+    border-radius: 0.5rem;
   }
+}
+
+.card__logo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: -55vw 0 0 -5vw;
+  display: block;
+  width: 110vw;
+  height: 110vw;
+  animation: logo-bg-shift 60s steps(60) infinite normal;
+  background-image: url(../img/ra-logo.svg);
+  background-repeat: no-repeat;
+  background-position: 25% 55%;
+  background-size: 80% 80%;
+  border-radius: 50%;
+
+  @media (min-aspect-ratio: 1/1) {
+    top: 0;
+    left: 50%;
+    margin: -5vh 0 0 -55vh;
+    width: 110vh;
+    height: 110vh;
+  }
+
+  @media #{$card-size-query} {
+    top: 0;
+    left: 50%;
+    margin: (-$logo-size * 0.05) 0 0 (-$logo-size / 2);
+    height: 110%;
+    width: $logo-size;
+  }
+
+  .card__side--back & {
+    z-index: -1;
+    transform: rotateY(180deg);
+    opacity: 0.1;
+  }
+}
+
+.card__side--back {
+  background: lighten($color-dark-grey, 65%);
+  text-align: center;
+}
+
+.card__content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.card__title {
+  font-size: 8rem;
+  line-height: 1.2em;
+  text-indent: 0;
+}
+
+.card__text {
+  font-size: 2rem;
+  line-height: 1.4em;
+}
+
+.card__button {
+  margin-top: 2rem;
+  background: none;
+  border: 0;
+  font-family: $font-family;
+  font-size: 2rem;
+  line-height: 1.4rem;
+  text-decoration: underline;
+  animation: accent-color-shift 60s steps(60) infinite normal;
 }
