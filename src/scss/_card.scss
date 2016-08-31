@@ -2,23 +2,23 @@
 $logo-size: $card-height * 1.1;
 
 @keyframes logo-bg-shift {
-  0%   {background-color: $brand-yellow;}
-  16.6%{background-color: $brand-orange;}
-  33.3%{background-color: $brand-red;}
-  50%  {background-color: $brand-pink;}
-  66.6%{background-color: $brand-blue;}
-  83.3%{background-color: $brand-green;}
-  100% {background-color: $brand-yellow;}
+  0%   {background-color: $color-brand-yellow;}
+  16.6%{background-color: $color-brand-orange;}
+  33.3%{background-color: $color-brand-red;}
+  50%  {background-color: $color-brand-pink;}
+  66.6%{background-color: $color-brand-blue;}
+  83.3%{background-color: $color-brand-green;}
+  100% {background-color: $color-brand-yellow;}
 }
 
 @keyframes accent-color-shift {
-  0%   {color: complement($brand-yellow);}
-  16.6%{color: complement($brand-orange);}
-  33.3%{color: complement($brand-red);}
-  50%  {color: complement($brand-pink);}
-  66.6%{color: complement($brand-blue);}
-  83.3%{color: complement($brand-green);}
-  100% {color: complement($brand-yellow);}
+  0%   {color: complement($color-brand-yellow);}
+  16.6%{color: complement($color-brand-orange);}
+  33.3%{color: complement($color-brand-red);}
+  50%  {color: complement($color-brand-pink);}
+  66.6%{color: complement($color-brand-blue);}
+  83.3%{color: complement($color-brand-green);}
+  100% {color: complement($color-brand-yellow);}
 }
 
 .card {

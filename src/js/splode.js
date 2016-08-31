@@ -11,7 +11,7 @@ var RARay = RARay || {}
   Self.init = function () {
     Self.$container = $('.card')
     Self.$wrapper = $('.splode')
-    Self.$boxes = Self.$wrapper.find('.box')
+    Self.$boxes = Self.$wrapper.find('.splode__box')
     Self.clickLeft = 0
     Self.clickRight = 0
 

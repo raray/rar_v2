@@ -1,12 +1,11 @@
-@mixin box($width, $height, $top, $left) {
-  position: absolute;
-  width: $width;
-  height: $height;
+@mixin splode-box($width, $height, $top, $left) {
   top: $top;
   left: $left;
+  width: $width;
+  height: $height;
 }
 
-@mixin link($bg-color, $image-url, $position, $size: contain) {
+@mixin splode-box-link($bg-color, $image-url, $position, $size: contain) {
   background-color: $bg-color;
   background-image: url(#{$image-url});
   background-position: #{$position};
@@ -31,129 +30,124 @@ $boxes_portrait:  50% 50% 0 0,
 
 
 .splode {
-  @include box(100%, 100%, 0, 0);
+  @include splode-box(100%, 100%, 0, 0);
 
-  display: none;
+  position: absolute;
   margin: 0;
+  display: none;
   padding: 0;
   list-style: none;
+}
+
+.splode__box {
+  position: absolute;
 
   // main layout
   @for $i from 1 through length($boxes_landscape) {
     $box-props: nth($boxes_landscape, $i);
+    $box-props-portrait: nth($boxes_portrait, $i);
 
-    .box:nth-child(#{$i}) {
-      @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
-    }
-  }
+    &:nth-child(#{$i}) {
+      @include splode-box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4));
 
-  // special layout for vertical card situations
-  @media (max-width: $card-width) {
-    @media (max-aspect-ratio: 1/1) {
-      @for $i from 1 through length($boxes_portrait) {
-        $box-props: nth($boxes_portrait, $i);
-
-        .box:nth-child(#{$i}) {
-          @include box(nth($box-props, 1), nth($box-props, 2), nth($box-props, 3), nth($box-props, 4))
-        }
-      }
-    }
-  }
-
-  .splode-hide {
-    @include box(50px, 50px, 0, 0);
-
-    button {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background-color: #000;
-      color: #fff;
-      font-size: 2rem;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .box {
-    a {
-      box-sizing: border-box;
-      display: block;
-      width: 100%;
-      height: 100%;
-      padding: 15px;
-      background-origin: content-box;
-      background-repeat: no-repeat;
-
-      @media #{$card-size-query} {
-        padding: 30px;
-      }
-
-      &:hover,
-      &:focus {
-
-        .description {
-          opacity: 1;
-        }
-      }
-
-      &.kindddred {
-        @include link(#ffffff, "/img/kindddred-logo.svg", "center right");
-      }
-
-      &.kalkomey {
-        @include link(#ef5300, "/img/kalkomey-logo.svg", "center center");
-
-        padding: 40px;
-      }
-
-      &.linkedin {
-        @include link(#0077b5, "/img/linkedin-logo.svg", "center center");
-      }
-
-      &.lifeblue {
-        @include link(#00a4d8, "/img/lifeblue-logo.svg", "center center");
-      }
-
-      &.cleveland-suite {
-        @include link(#000000, "/img/cleveland.jpg", "center center", cover);
-
-        padding: 0;
-      }
-
-      &.twitter {
-        @include link(#55acee, "/img/twitter-logo.svg", "center center");
-      }
-
-      &.github {
-        @include link(#000000, "/img/github-logo.svg", "center center");
-      }
-
-      &.dribbble {
-        @include link(#ea4c89, "/img/dribbble-logo.svg", "center center");
-      }
-
-      .description {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        opacity: 0;
-        transition: 0.3s;
-
-        p {
-          position: relative;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+      // special layout for vertical card situations
+      @media (max-width: $card-width) and (max-aspect-ratio: 1/1) {
+        @include splode-box(nth($box-props-portrait, 1), nth($box-props-portrait, 2), nth($box-props-portrait, 3), nth($box-props-portrait, 4));
       }
     }
   }
 }
 
+.splode__box--hide {
+  @include splode-box(50px, 50px, 0, 0);
 
+  position: absolute;
+}
+
+.splode__hide-button {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: $color-black;
+  color: $color-white;
+  font-size: 2rem;
+}
+
+.splode__box-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+
+  @media #{$card-size-query} {
+    padding: 30px;
+  }
+}
+
+.splode__box-link--kindddred {
+  @include splode-box-link($color-kindddred, "/img/kindddred-logo.svg", "center right");
+}
+
+.splode__box-link--kalkomey {
+  @include splode-box-link($color-kalkomey, "/img/kalkomey-logo.svg", "center center");
+
+  padding: 40px;
+}
+
+.splode__box-link--linkedin {
+  @include splode-box-link($color-linkedin, "/img/linkedin-logo.svg", "center center");
+}
+
+.splode__box-link--lifeblue {
+  @include splode-box-link($color-lifeblue, "/img/lifeblue-logo.svg", "center center");
+}
+
+.splode__box-link--cleveland-suite {
+  @include splode-box-link($color-cleveland-suite, "/img/cleveland.jpg", "center center", cover);
+
+  padding: 0;
+}
+
+.splode__box-link--twitter {
+  @include splode-box-link($color-twitter, "/img/twitter-logo.svg", "center center");
+}
+
+.splode__box-link--github {
+  @include splode-box-link($color-github, "/img/github-logo.svg", "center center");
+}
+
+.splode__box-link--dribbble {
+  @include splode-box-link($color-dribbble, "/img/dribbble-logo.svg", "center center");
+}
+
+.splode__box-link-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background: fade-out($color-black, 0.3);
+  color: #fff;
+  opacity: 0;
+  transition: 0.3s;
+
+  .splode__box-link:hover &,
+  .splode__box-link:focus & {
+    opacity: 1;
+  }
+}
+
+.splode__box-link-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  line-height: 1.4em;
+}
