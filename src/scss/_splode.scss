@@ -59,7 +59,7 @@ $boxes_portrait:  50% 50% 0 0,
 }
 
 .splode__box--hide {
-  @include splode-box(50px, 50px, 0, 0);
+  @include splode-box(5rem, 5rem, 0, 0);
 
   position: absolute;
 }
@@ -80,50 +80,50 @@ $boxes_portrait:  50% 50% 0 0,
   display: block;
   width: 100%;
   height: 100%;
-  padding: 15px;
+  padding: 1.5rem;
   box-sizing: border-box;
   background-origin: content-box;
   background-repeat: no-repeat;
 
   @media #{$card-size-query} {
-    padding: 30px;
+    padding: 3rem;
   }
 }
 
 .splode__box-link--kindddred {
-  @include splode-box-link($color-kindddred, "/img/kindddred-logo.svg", "center right");
+  @include splode-box-link($color-kindddred, '/img/kindddred-logo.svg', 'center right');
 }
 
 .splode__box-link--kalkomey {
-  @include splode-box-link($color-kalkomey, "/img/kalkomey-logo.svg", "center center");
+  @include splode-box-link($color-kalkomey, '/img/kalkomey-logo.svg', 'center center');
 
-  padding: 40px;
+  padding: 4rem;
 }
 
 .splode__box-link--linkedin {
-  @include splode-box-link($color-linkedin, "/img/linkedin-logo.svg", "center center");
+  @include splode-box-link($color-linkedin, '/img/linkedin-logo.svg', 'center center');
 }
 
 .splode__box-link--lifeblue {
-  @include splode-box-link($color-lifeblue, "/img/lifeblue-logo.svg", "center center");
+  @include splode-box-link($color-lifeblue, '/img/lifeblue-logo.svg', 'center center');
 }
 
 .splode__box-link--cleveland-suite {
-  @include splode-box-link($color-cleveland-suite, "/img/cleveland.jpg", "center center", cover);
+  @include splode-box-link($color-cleveland-suite, '/img/cleveland.jpg', 'center center', cover);
 
   padding: 0;
 }
 
 .splode__box-link--twitter {
-  @include splode-box-link($color-twitter, "/img/twitter-logo.svg", "center center");
+  @include splode-box-link($color-twitter, '/img/twitter-logo.svg', 'center center');
 }
 
 .splode__box-link--github {
-  @include splode-box-link($color-github, "/img/github-logo.svg", "center center");
+  @include splode-box-link($color-github, '/img/github-logo.svg', 'center center');
 }
 
 .splode__box-link--dribbble {
-  @include splode-box-link($color-dribbble, "/img/dribbble-logo.svg", "center center");
+  @include splode-box-link($color-dribbble, '/img/dribbble-logo.svg', 'center center');
 }
 
 .splode__box-link-desc {
@@ -132,7 +132,7 @@ $boxes_portrait:  50% 50% 0 0,
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 15px;
+  padding: 1.5rem;
   background: fade-out($color-black, 0.3);
   color: #fff;
   opacity: 0;

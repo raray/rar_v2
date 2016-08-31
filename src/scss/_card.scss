@@ -22,10 +22,10 @@ $logo-size: $card-height * 1.1;
 }
 
 .card {
+  margin: 0 auto 0 auto;
   width: 100%;
   height: 100%;
-  margin: 0 auto 0 auto;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px fade-out($color-black, 0.6);
 
   @media #{$card-size-query} {
     position: relative;
@@ -45,10 +45,10 @@ $logo-size: $card-height * 1.1;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #444;
+  background: $color-dark-grey;
 
   @media #{$card-size-query} {
-    border-radius: 5px;
+    border-radius: 0.5rem;
   }
 }
 
@@ -68,30 +68,30 @@ $logo-size: $card-height * 1.1;
   border-radius: 50%;
 
   @media (min-aspect-ratio: 1/1) {
-    width: 110vh;
-    height: 110vh;
     top: 0;
     left: 50%;
     margin: -5vh 0 0 -55vh;
+    width: 110vh;
+    height: 110vh;
   }
 
   @media #{$card-size-query} {
     top: 0;
     left: 50%;
+    margin: (-$logo-size * 0.05) 0 0 (-$logo-size / 2);
     height: 110%;
     width: $logo-size;
-    margin: (-$logo-size * 0.05) 0 0 (-$logo-size / 2);
   }
 
   .card__side--back & {
+    z-index: -1;
     transform: rotateY(180deg);
     opacity: 0.1;
-    z-index: -1;
   }
 }
 
 .card__side--back {
-  background: lighten(#444, 65%);
+  background: lighten($color-dark-grey, 65%);
   text-align: center;
 }
 
