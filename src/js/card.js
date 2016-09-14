@@ -8,7 +8,9 @@ var RARay = RARay || {}
 
   Self.init = function () {
     Self.$card = $('.card')
+    Self.$shine = $('#card-logo-shine')
     Self.curRotationY = 0
+    Self.shineMod = -3
 
     Self.setCardSizes()
     Self.bind()
@@ -56,6 +58,10 @@ var RARay = RARay || {}
     TweenMax.to(Self.$card, 0.6, {
       rotationY: Self.curRotationY
     })
+
+    TweenMax.to(Self.$shine, 0.6, {
+      backgroundPosition: '0 0'
+    })
   }
 
   Self.flip = function (e) {
@@ -88,6 +94,10 @@ var RARay = RARay || {}
 
     TweenMax.to(Self.$card, 0.6, {
       rotationY: coordX + Self.curRotationY
+    })
+
+    TweenMax.to(Self.$shine, 0.6, {
+      backgroundPosition: (Self.shineMod * coordX) + 'px 0'
     })
   }
 
