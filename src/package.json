@@ -5,11 +5,15 @@
     "autoprefixer": "^6.4.0",
     "cssnano": "^3.7.3",
     "grunt": "^1.0.1",
+    "grunt-contrib-imagemin": "^2.0.1",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^1.2.0",
     "grunt-standard": "^2.0.0",
     "load-grunt-tasks": "^3.5.0"
+  },
+  "dependencies": {
+    "grunt-minify-html": "^2.1.0"
   }
 }
