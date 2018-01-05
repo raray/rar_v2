@@ -1,14 +1,23 @@
 
-'use strict';
+'use strict'
 
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    minifyHtml: {
+      main: {
+        files: {
+          '../dist/index.html': 'index.html',
+          '../dist/google041f4df60d6bec8c.html': 'google-site-verify.html'
+        }
+      }
+    },
+
     sass: {
       main: {
         options: {
-          sourcemap: 'auto',
+          sourceMap: true,
           style: 'compressed'
         },
         files: {
@@ -33,7 +42,7 @@ module.exports = function (grunt) {
     },
 
     standard: {
-      options:{
+      options: {
         format: true
       },
       app: {
@@ -46,13 +55,13 @@ module.exports = function (grunt) {
       }
     },
 
-    uglify : {
+    uglify: {
       main: {
         options: {
           sourceMap: true
         },
         files: {
-          '../dist/js/preload.min.js' : [
+          '../dist/js/preload.min.js': [
             'js/typekit.js'
           ],
           '../dist/js/raray.min.js': [
@@ -72,9 +81,28 @@ module.exports = function (grunt) {
       }
     },
 
+    imagemin: {
+      main: {
+        files: [{
+          expand: true,
+          cwd: 'img/',
+          src: ['**/*.{png,jpg,gif,svg}'],
+          dest: '../dist/img/'
+        }]
+      }
+    },
+
     watch: {
       options: {
         livereload: true
+      },
+      html: {
+        files: [
+          '*.html'
+        ],
+        tasks: [
+          'minifyHtml'
+        ]
       },
       styles: {
         files: [
@@ -96,9 +124,9 @@ module.exports = function (grunt) {
         ]
       }
     }
-  });
+  })
 
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask('default', ['sass', 'postcss', 'standard', 'uglify']);
-};
+  grunt.registerTask('default', ['minifyHtml', 'sass', 'postcss', 'standard', 'uglify', 'imagemin'])
+}

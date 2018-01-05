@@ -1,3 +1,4 @@
 src/bower_components
 src/.sass-cache
 src/node_modules
+dist
